@@ -3,7 +3,7 @@ import { Table } from 'react-bootstrap';
 
 const DrugTable = () => {
   return (
-    <div>
+    <div className='tableContainer'>
         <Table striped bordered hover>
   <thead>
     <tr>

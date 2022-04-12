@@ -13,46 +13,31 @@ const AddDrug = (props) => {
     <div className="modalBackground">
     <div className="modalContainer">
       <div className="title">
-        <h4 className="modal-title">ADD TASK</h4>
+        <h4 className="modalTitle">ADD DRUG</h4>
       </div>
 
       <div className="modalBody">
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <form className="todo-form">
-            <label
-              style={{
-                fontSize: 20,
-                fontWeight: "bold",
-                color: "#3A2E39",
-                fontFamily: "Montserrat, sans-serif",
-              }}
-            >
-              Enter task:
+        <div>
+          <form>
+            <label className='modalLabel'>
+              Name of Drug:
             </label>
             <input
               type="text"
-              // placeholder="Enter task"
-              className="todo-taskName"
+              placeholder='Eg: Paracetamol'
+              className="modalActionName"
               name="drugName"
             />
 
             <label
-              style={{
-                fontSize: 20,
-                fontWeight: "bold",
-                color: "#3A2E39",
-                fontFamily: "Montserrat, sans-serif",
-                marginTop: 30,
-              }}
+             className='modalLabel'
             >
-              Enter description:
+              Price:
             </label>
-            <textarea
-              style={{ height: 70 }}
-              className="todo-taskName"
-            //   name="description"
-            //   value={description}
-            //   onChange={descriptionNameChange}
+            <input
+            type="number"
+            className="modalActionName"
+            placeholder='Eg: GHC 20'
             />
           </form>
         </div>
@@ -60,15 +45,14 @@ const AddDrug = (props) => {
 
       <div className="footer">
         <button
-          className="todo-button"
           type="submit"
-          style={{ fontFamily: "Montserrat, sans-serif" }}
+          className='modalButton'
         >
           Add
         </button>
         <button
           onClick={props.onClose}
-          style={{ fontFamily: "Montserrat, sans-serif" }}
+          className='modalButton'
         >
           Close
         </button>
