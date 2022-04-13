@@ -14,6 +14,7 @@ body{
 .logoContainer{
   font-family: 'Lobster', cursive;
   padding: 15px;
+  color: #FF7F50;
 }
 
 .buttonContainer{
@@ -57,10 +58,27 @@ body{
 
 .modalLabel{
   font-size: 20px;
-  font-weight: bold;
+  font-weight: 500;
   color: "#3A2E39";
   font-family: 'Montserrat', sans-serif;
   margin-top: 10px;
+}
+
+.viewModalLabel{
+  font-size: 20px;
+  font-weight: 500;
+  color: "#3A2E39";
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.viewDetail{
+  font-size: 20px;
+  color: "#3A2E39";
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 10px;
+  margin-left: 10px;
 }
 
 .modalContainer .footer {
@@ -75,19 +93,24 @@ body{
   height: 45px;
   margin: 10px;
   border: none;
-  background-color: #3A2E39;
+  background-color: #FF7F50;
   color: white;
   border-radius: 8px;
   font-size: 20px;
   cursor: pointer;
-}   
+}  
+
+.addButton{
+  background-color: #FF7F50;
+}
 
 .modalTitle{
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #3A2E39;
+  /* color: #FF7F50; */
   font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
 }
 
 .modalActionName{
@@ -97,6 +120,7 @@ body{
   padding: 10px;
   border-radius: 5px;
   outline: none;
+  margin-top: 5px;
 }
 
 .modalButton{
@@ -105,4 +129,85 @@ body{
 
 .tableContainer{
   font-family: 'Montserrat', sans-serif;
+}
+
+.deleteModalContainer{
+  width: 450px;
+  height: 210px;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  margin-bottom: 10%;
+}
+
+.viewModalContainer{
+  width: 450px;
+  height: 280px;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  margin-bottom: 10%;
+}
+
+.viewModalContainer .footer {
+  flex: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin-top: 90px; */
+}
+
+.viewModalContainer .footer button {
+  width: 150px;
+  height: 45px;
+  margin: 10px;
+  border: none;
+  background-color: #FF7F50;
+  color: white;
+  border-radius: 8px;
+  font-size: 20px;
+  cursor: pointer;
+} 
+
+.deleteModalContainer .footer {
+  flex: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.deleteModalContainer .footer button {
+  width: 150px;
+  height: 45px;
+  margin: 10px;
+  border: none;
+  background-color: #FF7F50;
+  color: white;
+  border-radius: 8px;
+  font-size: 20px;
+  cursor: pointer;
+} 
+
+.actionContainer{
+  padding-left: 10px;
+  display: flex;
+}
+
+.iconContainer{
+  padding-left: 5px;
+}
+
+.viewLabelContainer{
+  display: flex;
+}
+
+.tableHeader{
+  color: #FF7F50;
+  /* font-weight: bold; */
 }

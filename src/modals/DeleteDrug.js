@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+
+
 
 const DeleteDrug = (props) => {
 
@@ -7,7 +9,7 @@ const DeleteDrug = (props) => {
       }
   return (
     <div className="modalBackground">
-    <div className="modalContainer">
+    <div className="deleteModalContainer">
       <div className="title">
         <h4 className="modalTitle">DELETE DRUG</h4>
       </div>

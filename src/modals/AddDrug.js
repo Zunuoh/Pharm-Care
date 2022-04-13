@@ -39,6 +39,17 @@ const AddDrug = (props) => {
             className="modalActionName"
             placeholder='Eg: GHC 20'
             />
+
+            <label
+             className='modalLabel'
+            >
+              Date:
+            </label>
+            <input
+            type="number"
+            className="modalActionName"
+            placeholder='Eg: GHC 20'
+            />
           </form>
         </div>
       </div>
