@@ -16,9 +16,9 @@ const Homescreen = () => {
         </div>
         <div >
         <div className='buttonContainer'>
-          <Button onClick = {() => setShowAddDrugModal(true)} style={{backgroundColor:"#FF7F50", border:"none"}}>
-            ADD DRUG
-          </Button>
+          <button onClick = {() => setShowAddDrugModal(true)} className='addButton'>
+            Add Drug
+          </button>
           <AddDrug show={showAddDrugModal} onClose={() => setShowAddDrugModal(false)}/>
         </div>
 

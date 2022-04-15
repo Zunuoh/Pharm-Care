@@ -39,7 +39,7 @@ const ViewDrugDetails = (props) => {
         </div>
 
         <div className="footer">
-          <button onClick={props.onClose} className="modalButton">
+          <button onClick={props.onClose} className="declineModalButton">
             Close
           </button>
         </div>
