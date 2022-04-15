@@ -42,13 +42,13 @@ const EditDrug = (props) => {
       <div className="footer">
         <button
           type="submit"
-          className='modalButton'
+          className='acceptModalButton'
         >
           Add
         </button>
         <button
           onClick={props.onClose}
-          className='modalButton'
+          className='declineModalButton'
         >
           Close
         </button>

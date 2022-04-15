@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Table, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { ApiModule } from "../api/apiModule";
-import { Eye, Edit, Trash } from "react-feather";
+import {  Edit,  } from "react-feather";
+import { Pencil, Trash, Eye } from "heroicons-react";
 import EditDrug from "../modals/EditDrug";
 import DeleteDrug from "../modals/DeleteDrug";
 import ViewDrugDetails from "../modals/viewDrugDetails";
 
 const DrugTable = () => {
-  const [drugs, setDrugs] = useState("");
+  const [drugs, setDrugs] = useState();
   const [showEditDrugModal, setShowEditDrugModal] = useState(false);
   const [showDeleteDrugModal, setShowDeleteDrugModal] = useState(false);
   const [showViewDrugDetailsModal, setShowViewDrugDetailsModal] =
@@ -18,11 +19,20 @@ const DrugTable = () => {
       setDrugs(data.products);
     });
   };
+  console.log(drugs);
 
   useEffect(() => {
     showDrug();
     ApiModule.getDrugs();
   }, []);
+
+  const handleToggleShowEditModal = useCallback(
+    () => {
+      setShowEditDrugModal(!showEditDrugModal)
+    },
+    [setShowEditDrugModal, showEditDrugModal],
+  )
+  
   return (
     <div className="tableContainer">
       <Table striped bordered hover>
@@ -34,35 +44,60 @@ const DrugTable = () => {
             <th className="tableHeader">Actions</th>
           </tr>
         </thead>
-        <tbody style={{ color: "#FF7F50" }}>
+        <tbody style={{ color: "#10b981" }}>
           {drugs &&
             drugs.map((drug) => {
               return (
-                <tr>
+                <tr key={drug.id}>
                   <td>{drug.id}</td>
                   <td>{drug.name}</td>
-                  <td>Otto</td>
                   <td>
+                  <div>
+                    {( drug.prices ? (
+                        Math.max(
+                          ...drug.prices.map(element => {
+                            return new Date(element.date);
+                          }),
+                        )
+                      ) : null)}</div></td>
+                  <td>
+                    {console.log(
+                      // drug.prices.sort((a, b) => a.date - b.date)
+                      "max date",
+                      drug.prices.find( 
+                          (price) => new Date(price.date) ===
+                          
+                          new Date(
+                            Math.max(
+                              ...drug.prices.map(element => {
+                                return new Date(element.date);
+                              }),
+                            ),
+                          )
+                      ),
+                     
+                    )}
+                    {/* listOfValues.sort((a, b) => b.issueDate - a.issueDate); */}
                     <div className="actionContainer">
-                      <div>
+                    
                         <OverlayTrigger
                           placement="bottom"
                           overlay={
                             <Tooltip id="button-tooltip-2">Edit</Tooltip>
                           }
                         >
-                          <Edit
+                          <Pencil
                             className="iconContainer"
-                            onClick={() => setShowEditDrugModal(true)}
+                            onClick={handleToggleShowEditModal}
                           />
                         </OverlayTrigger>
                         <EditDrug
                           show={showEditDrugModal}
-                          onClose={() => setShowEditDrugModal(false)}
+                          onClose={handleToggleShowEditModal}
                         />
-                      </div>
+                   
 
-                      <div>
+                    
                         <OverlayTrigger
                           placement="bottom"
                           overlay={
@@ -78,9 +113,9 @@ const DrugTable = () => {
                           show={showDeleteDrugModal}
                           onClose={() => setShowDeleteDrugModal(false)}
                         />
-                      </div>
+                   
 
-                      <div>
+                     
                         <OverlayTrigger
                           placement="bottom"
                           overlay={
@@ -96,7 +131,7 @@ const DrugTable = () => {
                           show={showViewDrugDetailsModal}
                           onClose={() => setShowViewDrugDetailsModal(false)}
                         />
-                      </div>
+                     
                     </div>
                   </td>
                 </tr>
