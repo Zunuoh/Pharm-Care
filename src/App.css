@@ -1,5 +1,5 @@
 /* body{
-   font-family: 'Montserrat', sans-serif;
+   font-family: 'Poppins', sans-serif;
 } */
 
 .mainContainer{
@@ -58,24 +58,21 @@
 .modalLabel{
   font-size: 20px;
   font-weight: 500;
-  color: "#3A2E39";
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Poppins', sans-serif;
   margin-top: 10px;
 }
 
 .viewModalLabel{
   font-size: 20px;
   font-weight: 500;
-  color: "#3A2E39";
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Poppins', sans-serif;
   margin-top: 10px;
   font-weight: bold;
 }
 
 .viewDetail{
   font-size: 20px;
-  color: "#3A2E39";
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Poppins', sans-serif;
   margin-top: 10px;
   margin-left: 10px;
 }
@@ -87,15 +84,11 @@
   align-items: center;
 }
 
-.addButton{
-  background-color: #FF7F50;
-}
-
 .modalTitle{
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: bold;
 }
 
@@ -109,7 +102,7 @@
 }
 
 .acceptModalButton{
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Poppins', sans-serif;
   width: 120px;
   height: 40px;
   margin: 10px;
@@ -117,6 +110,7 @@
   font-size: 15px;
   cursor: pointer;
 }
+
 
 .acceptModalButton:hover {background-color: #cbd5e1}
 
@@ -126,7 +120,7 @@
 }
 
 .declineModalButton{
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Poppins', sans-serif;
   width: 120px;
   height: 40px;
   margin: 10px;
@@ -207,7 +201,7 @@
 }
 
 .addButton{
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Poppins', sans-serif;
   width: 120px;
   height: 40px;
   margin: 10px;
@@ -226,4 +220,19 @@
 .addButton:active {
   background-color: #3e8e41;
   transform: translateY(4px);
+}
+
+.calendar{
+  margin-left: 10px;
+}
+
+.loader{
+  color: #3e8e41;
+}
+
+.loaderContainer{
+  display:"flex";
+  justify-content:"center";
+  align-items:"center";
+  margin-top:"20%"
 }

@@ -1,40 +1,48 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Table, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { ApiModule } from "../api/apiModule";
-import {  Edit,  } from "react-feather";
 import { Pencil, Trash, Eye } from "heroicons-react";
 import EditDrug from "../modals/EditDrug";
 import DeleteDrug from "../modals/DeleteDrug";
 import ViewDrugDetails from "../modals/viewDrugDetails";
+import Loader from "./Loader";
+import {useSelector, useDispatch} from "react-redux";
+import _ from "lodash";
+
 
 const DrugTable = () => {
-  const [drugs, setDrugs] = useState();
+  // const [drugs, setDrugs] = useState();
   const [showEditDrugModal, setShowEditDrugModal] = useState(false);
   const [showDeleteDrugModal, setShowDeleteDrugModal] = useState(false);
-  const [showViewDrugDetailsModal, setShowViewDrugDetailsModal] =
-    useState(false);
+  const [showViewDrugDetailsModal, setShowViewDrugDetailsModal] = useState(false);
+  const [selectedDrug, setSelectedDrug] = useState();
 
-  const showDrug = () => {
-    ApiModule.getDrugs().then((data) => {
-      setDrugs(data.products);
-    });
-  };
-  console.log(drugs);
 
-  useEffect(() => {
-    showDrug();
-    ApiModule.getDrugs();
-  }, []);
+  const {value:drugsList, loading} = useSelector((state) => state.drugs)
+ console.log("check", drugsList)
 
-  const handleToggleShowEditModal = useCallback(
-    () => {
-      setShowEditDrugModal(!showEditDrugModal)
-    },
-    [setShowEditDrugModal, showEditDrugModal],
-  )
-  
+  const handleToggleShowEditModal = useCallback((drug=null) => {
+    setSelectedDrug(drug)
+    setShowEditDrugModal(!showEditDrugModal);
+  }, [setShowEditDrugModal, setSelectedDrug, showEditDrugModal]);
+
+  const handleToggleShowDeleteModal = useCallback(() => {
+    setShowDeleteDrugModal(!showDeleteDrugModal);
+  }, [setShowDeleteDrugModal, showDeleteDrugModal]);
+
+  const handleToggleShowViewModal = useCallback(() => {
+    setShowViewDrugDetailsModal(!showViewDrugDetailsModal);
+  }, [setShowViewDrugDetailsModal, showViewDrugDetailsModal,]);
+
+
   return (
     <div className="tableContainer">
+      { loading ? (
+        <div className="loaderContainer">
+           <Loader/>
+        </div>  
+      ) : (
+        <div>
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -44,94 +52,60 @@ const DrugTable = () => {
             <th className="tableHeader">Actions</th>
           </tr>
         </thead>
-        <tbody style={{ color: "#10b981" }}>
-          {drugs &&
-            drugs.map((drug) => {
+        <tbody>
+          { drugsList?.map((drug, index) => {
+              const recentPrice = _.last(_.sortBy(drug?.prices, "date"))
               return (
                 <tr key={drug.id}>
-                  <td>{drug.id}</td>
+                  <td>{index + 1}</td>
                   <td>{drug.name}</td>
+                  <td>GHC {recentPrice?.price}</td>
                   <td>
-                  <div>
-                    {( drug.prices ? (
-                        Math.max(
-                          ...drug.prices.map(element => {
-                            return new Date(element.date);
-                          }),
-                        )
-                      ) : null)}</div></td>
-                  <td>
-                    {console.log(
-                      // drug.prices.sort((a, b) => a.date - b.date)
-                      "max date",
-                      drug.prices.find( 
-                          (price) => new Date(price.date) ===
-                          
-                          new Date(
-                            Math.max(
-                              ...drug.prices.map(element => {
-                                return new Date(element.date);
-                              }),
-                            ),
-                          )
-                      ),
-                     
-                    )}
-                    {/* listOfValues.sort((a, b) => b.issueDate - a.issueDate); */}
                     <div className="actionContainer">
-                    
-                        <OverlayTrigger
-                          placement="bottom"
-                          overlay={
-                            <Tooltip id="button-tooltip-2">Edit</Tooltip>
-                          }
-                        >
-                          <Pencil
-                            className="iconContainer"
-                            onClick={handleToggleShowEditModal}
-                          />
-                        </OverlayTrigger>
-                        <EditDrug
-                          show={showEditDrugModal}
-                          onClose={handleToggleShowEditModal}
+                      <OverlayTrigger
+                        placement="bottom"
+                        overlay={<Tooltip id="button-tooltip-2">Edit</Tooltip>}
+                      >
+                        <Pencil
+                          className="iconContainer"
+                          onClick={() => handleToggleShowEditModal(drug)}
                         />
-                   
+                      </OverlayTrigger>
+                      <EditDrug
+                        show={showEditDrugModal}
+                        onClose={handleToggleShowEditModal}
+                        id={selectedDrug?.id}
+                      />
 
-                    
-                        <OverlayTrigger
-                          placement="bottom"
-                          overlay={
-                            <Tooltip id="button-tooltip-2">Delete</Tooltip>
-                          }
-                        >
-                          <Trash
-                            className="iconContainer"
-                            onClick={() => setShowDeleteDrugModal(true)}
-                          />
-                        </OverlayTrigger>
-                        <DeleteDrug
-                          show={showDeleteDrugModal}
-                          onClose={() => setShowDeleteDrugModal(false)}
+                      <OverlayTrigger
+                        placement="bottom"
+                        overlay={
+                          <Tooltip id="button-tooltip-2">Delete</Tooltip>
+                        }
+                      >
+                        <Trash
+                          className="iconContainer"
+                          onClick={handleToggleShowDeleteModal}
                         />
-                   
+                      </OverlayTrigger>
+                      <DeleteDrug
+                        show={showDeleteDrugModal}
+                        onClose={handleToggleShowDeleteModal}
+                      />
 
-                     
-                        <OverlayTrigger
-                          placement="bottom"
-                          overlay={
-                            <Tooltip id="button-tooltip-2">View</Tooltip>
-                          }
-                        >
-                          <Eye
-                            className="iconContainer"
-                            onClick={() => setShowViewDrugDetailsModal(true)}
-                          />
-                        </OverlayTrigger>
-                        <ViewDrugDetails
-                          show={showViewDrugDetailsModal}
-                          onClose={() => setShowViewDrugDetailsModal(false)}
+                      <OverlayTrigger
+                        placement="bottom"
+                        overlay={<Tooltip id="button-tooltip-2">View</Tooltip>}
+                      >
+                        <Eye
+                          className="iconContainer"
+                          onClick={handleToggleShowViewModal}
                         />
-                     
+                      </OverlayTrigger>
+                      <ViewDrugDetails
+                        show={showViewDrugDetailsModal}
+                        onClose={handleToggleShowViewModal}
+                      />
                     </div>
                   </td>
                 </tr>
@@ -139,6 +113,10 @@ const DrugTable = () => {
             })}
         </tbody>
       </Table>
+      </div>
+      )}
+      
+      
     </div>
   );
 };
