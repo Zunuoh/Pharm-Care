@@ -30,9 +30,6 @@ export const drugSlice = createSlice({
         }
     },
 
-    // extraReducers
-
-  
 })
 
 
@@ -44,7 +41,6 @@ export const fetchDrugs = () => dispatch => {
           dispatch(
             setInitialState(data.products)
           )
-        //   setLoading(false);
         });
       
 }

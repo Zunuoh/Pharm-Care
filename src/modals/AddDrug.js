@@ -1,13 +1,15 @@
-import React, { useState, useCallback } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { addDrug } from "../features/drug-reducer";
+import { toast } from "react-toastify";
 
+toast.configure();
 const AddDrug = (props) => {
   const [drugName, setDrugName] = useState("");
   const [drugPrice, setDrugPrice] = useState("");
   const [dateDrugWasStocked, setDateDrugWasStocked] = useState("");
   const dispatch = useDispatch();
-  const drugsList = useSelector((state) => state.drugs.value);
+  // const drugsList = useSelector((state) => state.drugs.value);
 
   if (!props.show) {
     return null;
@@ -27,6 +29,10 @@ const AddDrug = (props) => {
         ],
       })
     );
+    toast.success("Drug added successfully", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 3000,
+    });
     props.onClose();
   };
 
