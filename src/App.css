@@ -75,6 +75,8 @@
   font-family: 'Poppins', sans-serif;
   margin-top: 10px;
   margin-left: 10px;
+  width: 200px;
+  border: none;
 }
 
 .modalContainer .footer {
@@ -154,7 +156,7 @@
 }
 
 .viewModalContainer{
-  width: 450px;
+  width: 650px;
   height: 280px;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -226,13 +228,11 @@
   margin-left: 10px;
 }
 
-.loader{
-  color: #3e8e41;
-}
 
 .loaderContainer{
   display:"flex";
   justify-content:"center";
   align-items:"center";
-  margin-top:"20%"
+  margin-top:"20%";
+  color: #3e8e41;
 }

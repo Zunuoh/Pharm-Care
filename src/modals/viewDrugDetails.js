@@ -1,6 +1,10 @@
 import React from "react";
+import {useSelector} from 'react-redux';
+import { getDrug } from "../features/drug-reducer";
 
 const ViewDrugDetails = (props) => {
+  const drug = useSelector(getDrug);
+
   if (!props.show) {
     return null;
   }
@@ -14,26 +18,25 @@ const ViewDrugDetails = (props) => {
         <div className="modalBody">
           <div>
             <form>
-              <div className='viewLabelContainer'>
-              <label className="viewModalLabel">
-               Name: 
-              </label>
-              <div className="viewDetail">ddjkdd</div>
+              <div className="viewLabelContainer">
+                <label className="viewModalLabel">Name:</label>
+                <div
+                  className="viewDetail"
+                  name="viewName"
+                >{drug.name ?? "N/A"}</div>
+                  
+              
               </div>
+              {drug.prices.map((price) =>{
+                return(
+                  <div className="viewLabelContainer">
+                  <label className="viewModalLabel">Price on {new Date(price.date).toISOString().substring(0,10)}:</label>
+                  <div className="viewDetail">GHC {price.price}</div>
+                </div>
+  
+                )
+              })}
              
-              <div className='viewLabelContainer'>
-              <label className="viewModalLabel">
-               Price on 22/3/2000: 
-              </label>
-              <div className="viewDetail">ddjkdd</div>
-              </div>
-
-              <div className='viewLabelContainer'>
-              <label className="viewModalLabel">
-               Price on 22/3/2000: 
-              </label>
-              <div className="viewDetail">ddjkdd</div>
-              </div>
             </form>
           </div>
         </div>

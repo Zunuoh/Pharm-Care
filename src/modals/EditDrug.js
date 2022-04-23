@@ -1,33 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import _ from "lodash";
 import { getDrug, updateDrug } from "../features/drug-reducer";
+import { toast } from "react-toastify";
 
 const EditDrug = ({ id, ...props }) => {
-  const drug = useSelector((state) => getDrug(state, id));
-
-  const [editName, setEditName] = useState("");
-  const [editPrice, setEditPrice] = useState(0);
-  const [editDate, setEditDate] = useState("");
-
+  const drug = useSelector(getDrug);
+  const [editName, setEditName] = useState();
+  const [editPrice, setEditPrice] = useState();
   const dispatch = useDispatch();
 
-  const onSubmit = () => {
-    dispatch(
-      updateDrug({
-        id: drug.id,
-        name: editName || props.selectedDrug.name,
-        price:
-          editPrice ||
-          _.last(_.sortBy(props.selectedDrug?.prices, "date")).price,
-        changed:
-          editPrice ===
-          _.last(_.sortBy(props.selectedDrug?.prices, "date")).price,
-      })
-    );
-    props.onClose?.();
+  const resetInput = () => {
+    setEditName?.(undefined);
+    setEditPrice?.(undefined);
   };
 
+  const handleEditDrugSubmit = useCallback(
+    () => {
+      dispatch(
+        updateDrug({
+          name: editName ?? drug?.name,
+          price: editPrice ?? _.last(_.sortBy(drug?.prices, "date")).price,
+          changed:
+            editPrice === _.last(_.sortBy(drug?.prices, "date")).price
+              ? false
+              : true,
+        })
+      );
+      resetInput();
+      toast.success("Drug edited successfully", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 1000,
+      });
+      props.onClose?.();
+    },
+    [dispatch, resetInput, props.onClose]
+  );
+    
   if (!props.show) {
     return null;
   }
@@ -48,7 +57,7 @@ const EditDrug = ({ id, ...props }) => {
                 placeholder="Eg: Paracetamol"
                 className="modalActionName"
                 name="drugName"
-                value={editName || drug?.name}
+                value={editName ?? drug?.name}
                 onChange={(e) => setEditName?.(e.target.value)}
               />
 
@@ -58,20 +67,9 @@ const EditDrug = ({ id, ...props }) => {
                 className="modalActionName"
                 placeholder="Eg: GHC 20"
                 value={
-                  editPrice || _.last(_.sortBy(drug?.price, "date"))?.price
+                  editPrice ?? _.last(_.sortBy(drug?.prices, "date"))?.price
                 }
                 onChange={(e) => setEditPrice?.(e.target.value)}
-              />
-
-              <label className="modalLabel">Date:</label>
-              <input
-                type="date"
-                id="birthday"
-                name="drugDate"
-                className="calendar"
-                defaultValue={drug?.date}
-                value={editDate}
-                onChange={(e) => setEditDate?.(e.target.value)}
               />
             </form>
           </div>
@@ -81,7 +79,7 @@ const EditDrug = ({ id, ...props }) => {
           <button
             type="submit"
             className="acceptModalButton"
-            onClick={onSubmit}
+            onClick={handleEditDrugSubmit}
           >
             Edit
           </button>

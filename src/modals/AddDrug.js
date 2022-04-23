@@ -1,21 +1,78 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { addDrug } from "../features/drug-reducer";
 import { toast } from "react-toastify";
 
 toast.configure();
 const AddDrug = (props) => {
-  const [drugName, setDrugName] = useState("");
-  const [drugPrice, setDrugPrice] = useState("");
+  const [drugName, setDrugName] = useState();
+  const [drugPrice, setDrugPrice] = useState();
   const [dateDrugWasStocked, setDateDrugWasStocked] = useState("");
   const dispatch = useDispatch();
-  // const drugsList = useSelector((state) => state.drugs.value);
+  const resetInput = () => {
+    setDrugName?.(undefined);
+    setDrugPrice?.(undefined);
+  };
 
-  if (!props.show) {
-    return null;
-  }
+  // const handleAddDrugSubmit = useCallback(
+  //   () => {
+  //    try {
+  //     dispatch(
+  //       addDrug({
+  //         id: Date.now(),
+  //         name: drugName,
+  //         prices: [
+  //           {
+  //             id: Date.now(),
+  //             price: drugPrice,
+  //             date: new Date().toLocaleDateString(),
+  //           },
+  //         ],
+  //       })
+  //     );
+  //     toast.success("Drug added successfully", {
+  //       position: toast.POSITION.TOP_CENTER,
+  //       autoClose: 3000,
+  //     });
+  //     resetInput();
+  //     props.onClose();
+  //    } catch (error) {
+  //      toast.error("Could not add drug",  {
+  //       position: toast.POSITION.TOP_CENTER,
+  //       autoClose: 3000,
+  //     })
+  //    }
+  //   },
+  //   [dispatch, props.onClose],
+  // );
 
-  const onSubmit = () => {
+
+  // const handleAddDrugSubmit = useCallback(
+  //   () => {
+  //     dispatch(
+  //       addDrug({
+  //         id: Date.now(),
+  //         name: drugName,
+  //         prices: [
+  //           {
+  //             id: Date.now(),
+  //             price: drugPrice,
+  //             date: new Date().toLocaleDateString()
+  //           }
+  //         ]
+  //       })
+  //     );
+  //     toast.success("Drug added successfully", {
+  //       position: toast.POSITION.TOP_CENTER,
+  //       autoClose: 1000
+  //     });
+  //     props.onClose()
+  //   },
+  //   [dispatch, props.onClose],
+  // )
+  
+  const handleAddDrugSubmit = () => {
+   try {
     dispatch(
       addDrug({
         id: Date.now(),
@@ -24,17 +81,29 @@ const AddDrug = (props) => {
           {
             id: Date.now(),
             price: drugPrice,
-            date: new Date(dateDrugWasStocked).toLocaleDateString(),
+            date: new Date().toLocaleDateString(),
           },
         ],
       })
     );
     toast.success("Drug added successfully", {
       position: toast.POSITION.TOP_CENTER,
+      autoClose: 1000,
+    });
+    resetInput()
+    props.onClose();
+   } catch (error) {
+    toast.success("Sorry, drug could not be added", {
+      position: toast.POSITION.TOP_CENTER,
       autoClose: 3000,
     });
-    props.onClose();
+   }
   };
+
+
+  if (!props.show) {
+    return null;
+  }
 
   return (
     <div className="modalBackground">
@@ -52,6 +121,7 @@ const AddDrug = (props) => {
                 placeholder="Eg: Paracetamol"
                 className="modalActionName"
                 name="drugName"
+                value={drugName}
                 onChange={(e) => setDrugName(e.target.value)}
               />
 
@@ -61,16 +131,9 @@ const AddDrug = (props) => {
                 className="modalActionName"
                 placeholder="Eg: GHC 20"
                 name="drugPrice"
+                value={drugPrice}
                 onChange={(e) => setDrugPrice(e.target.value)}
-              />
-
-              <label className="modalLabel">Date:</label>
-              <input
-                type="date"
-                id="birthday"
-                name="drugDate"
-                className="calendar"
-                onChange={(e) => setDateDrugWasStocked(e.target.value)}
+                required
               />
             </form>
           </div>
@@ -78,9 +141,9 @@ const AddDrug = (props) => {
 
         <div className="footer">
           <button
-            type="submit"
+            type="button"
             className="acceptModalButton"
-            onClick={onSubmit}
+            onClick={handleAddDrugSubmit}
           >
             Add
           </button>
