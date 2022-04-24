@@ -43,6 +43,8 @@ const DrugTable = () => {
   );
 
 
+
+
   return (
     <div className="tableContainer">
       {loading ? (
@@ -63,6 +65,8 @@ const DrugTable = () => {
             <tbody>
               {drugsList?.map((drug, index) => {
                 const recentPrice = _.last(_.sortBy(drug?.prices, "date"));
+                console.log("allPrices", drug.prices)
+                // const recentPrice = drug?.prices[drug?.prices.length -1]
                 return (
                   <tr key={drug.id}>
                     <td>{index + 1}</td>

@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react'
+import React, {useCallback, useState, useEffect} from 'react'
 import DrugTable from './DrugTable'
 import AddDrug from '../modals/AddDrug'
 
@@ -13,6 +13,14 @@ const Homescreen = () => {
     [setShowAddDrugModal,showAddDrugModal],
   )
   
+  // useEffect(() => {
+  //   const formData = window.localStorage.getItem('pharmcare')
+  //   console.log("FORMMMM", formData)
+  //   setShowAddDrugModal(JSON.parse(formData));
+  // })
+  // useEffect(() => {
+  //   window.localStorage.setItem('pharmcare', JSON.stringify(showAddDrugModal));
+  // })
  
   return (
     <div >

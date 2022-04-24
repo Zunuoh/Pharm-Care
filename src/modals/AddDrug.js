@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addDrug } from "../features/drug-reducer";
 import { toast } from "react-toastify";
@@ -100,13 +100,15 @@ const AddDrug = (props) => {
    }
   };
 
-
+  console.log("hiii")
   if (!props.show) {
+    console.log("helloo")
     return null;
+    
   }
-
+console.log("heyy")
   return (
-    <div className="modalBackground">
+    <div className="modalBackground" testID="addDrugName">
       <div className="modalContainer">
         <div className="title">
           <h4 className="modalTitle">ADD DRUG</h4>
