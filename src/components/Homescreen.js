@@ -13,14 +13,6 @@ const Homescreen = () => {
     [setShowAddDrugModal,showAddDrugModal],
   )
   
-  // useEffect(() => {
-  //   const formData = window.localStorage.getItem('pharmcare')
-  //   console.log("FORMMMM", formData)
-  //   setShowAddDrugModal(JSON.parse(formData));
-  // })
-  // useEffect(() => {
-  //   window.localStorage.setItem('pharmcare', JSON.stringify(showAddDrugModal));
-  // })
  
   return (
     <div >

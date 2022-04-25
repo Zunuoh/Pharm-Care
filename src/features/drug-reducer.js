@@ -17,25 +17,6 @@ export const drugSlice = createSlice({
     updateDrug: (state, action) => {
       state.value.forEach((drug) => {
         if (drug.id === state.activeDrug?.id) {
-       /**  
-        * @todo 
-        return {
-            name: action.payload.name,
-            prices: action.payload.changed
-              ? drug.prices
-              : [
-                ...drug.prices,
-                {
-                  id: Date.now(),
-                  price: action.payload.price,
-                  date: new Date(action.payload.date).toLocaleDateString(),
-                },
-              ]
-          }; 
-          **/
-         console.log("changed", action.payload.changed)
-         console.log("price", action.payload.price)
-        
           drug.name = action.payload.name
           drug.prices = action.payload.changed   ? [
             ...drug.prices,
@@ -47,7 +28,7 @@ export const drugSlice = createSlice({
           ]
              : 
               drug.prices
-              console.log("final", drug.price)
+
         }
       });
     },

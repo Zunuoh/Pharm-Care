@@ -6,7 +6,7 @@ import DeleteDrug from "../modals/DeleteDrug";
 import ViewDrugDetails from "../modals/viewDrugDetails";
 import Loader from "./Loader";
 import { useSelector, useDispatch } from "react-redux";
-import { setActiveDrug } from "../features/drug-reducer";
+import { setActiveDrug } from "../features/drug-reducer"; 
 import _ from "lodash";
 
 const DrugTable = () => {
@@ -65,8 +65,6 @@ const DrugTable = () => {
             <tbody>
               {drugsList?.map((drug, index) => {
                 const recentPrice = _.last(_.sortBy(drug?.prices, "date"));
-                console.log("allPrices", drug.prices)
-                // const recentPrice = drug?.prices[drug?.prices.length -1]
                 return (
                   <tr key={drug.id}>
                     <td>{index + 1}</td>

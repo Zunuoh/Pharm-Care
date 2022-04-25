@@ -41,7 +41,7 @@
 
 .modalContainer {
   width: 450px;
-  height: 400px;
+  height: 350px;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   display: flex;
@@ -71,7 +71,7 @@
 }
 
 .viewDetail{
-  font-size: 20px;
+  font-size: 18px;
   font-family: 'Poppins', sans-serif;
   margin-top: 10px;
   margin-left: 10px;
@@ -157,7 +157,7 @@
 
 .viewModalContainer{
   width: 650px;
-  height: 280px;
+  height: 260px;
   overflow: auto;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;

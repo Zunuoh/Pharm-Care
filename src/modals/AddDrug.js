@@ -13,63 +13,6 @@ const AddDrug = (props) => {
     setDrugName?.(undefined);
     setDrugPrice?.(undefined);
   };
-
-  // const handleAddDrugSubmit = useCallback(
-  //   () => {
-  //    try {
-  //     dispatch(
-  //       addDrug({
-  //         id: Date.now(),
-  //         name: drugName,
-  //         prices: [
-  //           {
-  //             id: Date.now(),
-  //             price: drugPrice,
-  //             date: new Date().toLocaleDateString(),
-  //           },
-  //         ],
-  //       })
-  //     );
-  //     toast.success("Drug added successfully", {
-  //       position: toast.POSITION.TOP_CENTER,
-  //       autoClose: 3000,
-  //     });
-  //     resetInput();
-  //     props.onClose();
-  //    } catch (error) {
-  //      toast.error("Could not add drug",  {
-  //       position: toast.POSITION.TOP_CENTER,
-  //       autoClose: 3000,
-  //     })
-  //    }
-  //   },
-  //   [dispatch, props.onClose],
-  // );
-
-
-  // const handleAddDrugSubmit = useCallback(
-  //   () => {
-  //     dispatch(
-  //       addDrug({
-  //         id: Date.now(),
-  //         name: drugName,
-  //         prices: [
-  //           {
-  //             id: Date.now(),
-  //             price: drugPrice,
-  //             date: new Date().toLocaleDateString()
-  //           }
-  //         ]
-  //       })
-  //     );
-  //     toast.success("Drug added successfully", {
-  //       position: toast.POSITION.TOP_CENTER,
-  //       autoClose: 1000
-  //     });
-  //     props.onClose()
-  //   },
-  //   [dispatch, props.onClose],
-  // )
   
   const handleAddDrugSubmit = () => {
    try {
@@ -100,13 +43,11 @@ const AddDrug = (props) => {
    }
   };
 
-  console.log("hiii")
+
   if (!props.show) {
-    console.log("helloo")
     return null;
-    
   }
-console.log("heyy")
+
   return (
     <div className="modalBackground" testID="addDrugName">
       <div className="modalContainer">
