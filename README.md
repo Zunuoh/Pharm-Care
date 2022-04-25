@@ -3,7 +3,7 @@
     
     • After running yarn install, run 'yarn start' to start the server.
     
-    • Open your browser an navigate to http://localhost:3000 to view the ‘Pharm Care' application.
+    • Open your browser and navigate to http://localhost:3000 to view the Pharm Care application.
 
 
 
@@ -17,16 +17,16 @@
     • React bootstrap:  Component based library used for styling.
 
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Build
+
+    • To build the project, run the ‘npm build’ command.
+    
+    • Enter the url generated after the build in your browser.
 
 
 
 
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
