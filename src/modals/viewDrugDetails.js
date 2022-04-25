@@ -1,5 +1,5 @@
 import React from "react";
-import {useSelector} from 'react-redux';
+import { useSelector } from "react-redux";
 import { getDrug } from "../features/drug-reducer";
 
 const ViewDrugDetails = (props) => {
@@ -20,23 +20,21 @@ const ViewDrugDetails = (props) => {
             <form>
               <div className="viewLabelContainer">
                 <label className="viewModalLabel">Name:</label>
-                <div
-                  className="viewDetail"
-                  name="viewName"
-                >{drug.name ?? "N/A"}</div>
-                  
-              
-              </div>
-              {drug.prices.map((price) =>{
-                return(
-                  <div className="viewLabelContainer">
-                  <label className="viewModalLabel">Price on {new Date(price.date).toISOString().substring(0,10)}:</label>
-                  <div className="viewDetail">GHC {price.price}</div>
+                <div className="viewDetail" name="viewName">
+                  {drug.name ?? "N/A"}
                 </div>
-  
-                )
+              </div>
+              {drug.prices.map((price) => {
+                return (
+                  <div className="viewLabelContainer">
+                    <label className="viewModalLabel">
+                      Price on{" "}
+                      {new Date(price.date).toISOString().substring(0, 10)}:
+                    </label>
+                    <div className="viewDetail">GHC {price.price}</div>
+                  </div>
+                );
               })}
-             
             </form>
           </div>
         </div>

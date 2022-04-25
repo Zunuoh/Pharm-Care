@@ -6,7 +6,7 @@ import DeleteDrug from "../modals/DeleteDrug";
 import ViewDrugDetails from "../modals/viewDrugDetails";
 import Loader from "./Loader";
 import { useSelector, useDispatch } from "react-redux";
-import { setActiveDrug } from "../features/drug-reducer"; 
+import { setActiveDrug } from "../features/drug-reducer";
 import _ from "lodash";
 
 const DrugTable = () => {
@@ -41,9 +41,6 @@ const DrugTable = () => {
     },
     [setShowViewDrugDetailsModal, showViewDrugDetailsModal]
   );
-
-
-
 
   return (
     <div className="tableContainer">
@@ -112,7 +109,7 @@ const DrugTable = () => {
                         >
                           <Eye
                             className="iconContainer"
-                            onClick={()=> handleToggleShowViewModal(drug)}
+                            onClick={() => handleToggleShowViewModal(drug)}
                           />
                         </OverlayTrigger>
                         <ViewDrugDetails

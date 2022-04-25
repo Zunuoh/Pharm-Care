@@ -15,28 +15,25 @@ const EditDrug = ({ id, ...props }) => {
     setEditPrice?.(undefined);
   };
 
-  const handleEditDrugSubmit = useCallback(
-    () => {
-      dispatch(
-        updateDrug({
-          name: editName ?? drug?.name,
-          price: editPrice ?? _.last(_.sortBy(drug?.prices, "date")).price,
-          changed:
-            editPrice === _.last(_.sortBy(drug?.prices, "date")).price
-              ? false
-              : true,
-        })
-      );
-      resetInput();
-      toast.success("Drug edited successfully", {
-        position: toast.POSITION.TOP_CENTER,
-        autoClose: 1000,
-      });
-      props.onClose?.();
-    },
-    [dispatch, resetInput, props.onClose]
-  );
-    
+  const handleEditDrugSubmit = useCallback(() => {
+    dispatch(
+      updateDrug({
+        name: editName ?? drug?.name,
+        price: editPrice ?? _.last(_.sortBy(drug?.prices, "date")).price,
+        changed:
+          editPrice === _.last(_.sortBy(drug?.prices, "date")).price
+            ? false
+            : true,
+      })
+    );
+    resetInput();
+    toast.success("Drug edited successfully", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 1000,
+    });
+    props.onClose?.();
+  }, [dispatch, resetInput, props.onClose]);
+
   if (!props.show) {
     return null;
   }

@@ -3,22 +3,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteDrug, getDrug } from "../features/drug-reducer";
 import { toast } from "react-toastify";
 
-
 const DeleteDrug = (props) => {
   const drug = useSelector(getDrug);
   const dispatch = useDispatch();
 
-  const handleDeleteDrugSubmit = useCallback(
-    () => {
-      dispatch(deleteDrug({}));
-      toast.success("Drug deleted successfully", {
-        position: toast.POSITION.TOP_CENTER,
-        autoClose: 1000,
-      });
-      props.onClose?.();
-    },
-    [dispatch, props.onClose],
-  );      
+  const handleDeleteDrugSubmit = useCallback(() => {
+    dispatch(deleteDrug({}));
+    toast.success("Drug deleted successfully", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 1000,
+    });
+    props.onClose?.();
+  }, [dispatch, props.onClose]);
 
   if (!props.show) {
     return null;
