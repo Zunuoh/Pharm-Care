@@ -7,7 +7,7 @@ const Root = ({ children }) => {
   useLayoutEffect(() => {
     dispatch(fetchDrugs());
     return () => {};
-  }, []);
+  }, [dispatch]);
 
   return <>{children}</>;
 };
