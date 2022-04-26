@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import { Table, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Pencil, Trash, Eye } from "heroicons-react";
 import EditDrug from "../modals/EditDrug";
@@ -23,7 +23,7 @@ const DrugTable = () => {
       dispatch(setActiveDrug(drug));
       setShowEditDrugModal((prev) => !prev);
     },
-    [setShowEditDrugModal, showEditDrugModal]
+    [setShowEditDrugModal, dispatch]
   );
 
   const handleToggleShowDeleteModal = useCallback(
@@ -31,7 +31,7 @@ const DrugTable = () => {
       dispatch(setActiveDrug(drug));
       setShowDeleteDrugModal((prev) => !prev);
     },
-    [setShowDeleteDrugModal, showDeleteDrugModal]
+    [setShowDeleteDrugModal, dispatch]
   );
 
   const handleToggleShowViewModal = useCallback(
@@ -39,7 +39,7 @@ const DrugTable = () => {
       dispatch(setActiveDrug(drug));
       setShowViewDrugDetailsModal((prev) => !prev);
     },
-    [setShowViewDrugDetailsModal, showViewDrugDetailsModal]
+    [setShowViewDrugDetailsModal, dispatch]
   );
 
   return (

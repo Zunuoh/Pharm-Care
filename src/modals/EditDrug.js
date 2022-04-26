@@ -10,10 +10,10 @@ const EditDrug = ({ id, ...props }) => {
   const [editPrice, setEditPrice] = useState();
   const dispatch = useDispatch();
 
-  const resetInput = () => {
+  const resetInput = useCallback(() => {
     setEditName?.(undefined);
     setEditPrice?.(undefined);
-  };
+  }, [setEditName, setEditPrice]);
 
   const handleEditDrugSubmit = useCallback(() => {
     dispatch(
@@ -32,14 +32,14 @@ const EditDrug = ({ id, ...props }) => {
       autoClose: 1000,
     });
     props.onClose?.();
-  }, [dispatch, resetInput, props.onClose]);
+  }, [dispatch, resetInput, props, drug, editName, editPrice]);
 
   if (!props.show) {
     return null;
   }
 
   return (
-    <div className="modalBackground">
+    <form className="modalBackground" onSubmit={handleEditDrugSubmit}>
       <div className="modalContainer">
         <div className="title">
           <h4 className="modalTitle">EDIT DRUG</h4>
@@ -47,45 +47,42 @@ const EditDrug = ({ id, ...props }) => {
 
         <div className="modalBody">
           <div>
-            <form>
-              <label className="modalLabel">Name of Drug:</label>
-              <input
-                type="text"
-                placeholder="Eg: Paracetamol"
-                className="modalActionName"
-                name="drugName"
-                value={editName ?? drug?.name}
-                onChange={(e) => setEditName?.(e.target.value)}
-              />
+            <label className="modalLabel">Name of Drug:</label>
+            <input
+              type="text"
+              placeholder="Eg: Paracetamol"
+              className="modalActionName"
+              name="drugName"
+              value={editName ?? drug?.name}
+              onChange={(e) => setEditName?.(e.target.value)}
+              required
+            />
 
-              <label className="modalLabel">Price:</label>
-              <input
-                type="number"
-                className="modalActionName"
-                placeholder="Eg: GHC 20"
-                value={
-                  editPrice ?? _.last(_.sortBy(drug?.prices, "date"))?.price
-                }
-                onChange={(e) => setEditPrice?.(e.target.value)}
-              />
-            </form>
+            <label className="modalLabel">Price:</label>
+            <input
+              type="number"
+              className="modalActionName"
+              placeholder="Eg: GHC 20"
+              value={editPrice ?? _.last(_.sortBy(drug?.prices, "date"))?.price}
+              onChange={(e) => setEditPrice?.(e.target.value)}
+              required
+            />
           </div>
         </div>
 
         <div className="footer">
-          <button
-            type="submit"
-            className="acceptModalButton"
-            onClick={handleEditDrugSubmit}
-          >
+          <button type="submit" className="acceptModalButton">
             Edit
           </button>
-          <button onClick={props.onClose} className="declineModalButton">
+          <button
+            onClick={() => props.onClose?.()}
+            className="declineModalButton"
+          >
             Close
           </button>
         </div>
       </div>
-    </div>
+    </form>
   );
 };
 

@@ -40,7 +40,10 @@ const ViewDrugDetails = (props) => {
         </div>
 
         <div className="footer">
-          <button onClick={props.onClose} className="declineModalButton">
+          <button
+            onClick={() => props.onClose?.()}
+            className="declineModalButton"
+          >
             Close
           </button>
         </div>

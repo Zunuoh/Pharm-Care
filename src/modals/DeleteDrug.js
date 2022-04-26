@@ -14,7 +14,7 @@ const DeleteDrug = (props) => {
       autoClose: 1000,
     });
     props.onClose?.();
-  }, [dispatch, props.onClose]);
+  }, [dispatch, props]);
 
   if (!props.show) {
     return null;
@@ -44,7 +44,10 @@ const DeleteDrug = (props) => {
           >
             Yes
           </button>
-          <button onClick={props.onClose} className="declineModalButton">
+          <button
+            onClick={() => props.onClose?.()}
+            className="declineModalButton"
+          >
             No
           </button>
         </div>

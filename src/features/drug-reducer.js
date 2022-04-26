@@ -10,7 +10,7 @@ export const drugSlice = createSlice({
       state.value.push(action.payload);
     },
 
-    deleteDrug: (state, action) => {
+    deleteDrug: (state) => {
       state.value = state.value.filter(
         (drug) => drug.id !== state.activeDrug?.id
       );
