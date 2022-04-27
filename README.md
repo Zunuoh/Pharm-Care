@@ -1,30 +1,37 @@
 # Getting Started 
-    • After downloading this repository, install the dependencies by running the 'yarn install' command.
+    1. After downloading this repository, install the dependencies by running the 'yarn install' command.
     
-    • After running yarn install, run 'yarn start' to start the server.
+    2. After running yarn install, run 'yarn start' to start the server.
     
-    • Open your browser and navigate to http://localhost:3000 to view the Pharm Care application.
+    3. Open your browser and navigate to http://localhost:3000 to view the Pharm Care application. 
+    
+    4. Alternatively, the project can be accessed on https://pharmcare.netlify.app.
 
-
+        
 
 # Technologies Involved
-    • React: A simple Javascript library used to build user interfaces.
+    1. React: A simple Javascript library used to build user interfaces.
     
-    • Axios: An HTTP client-based package used to communicate with REST APIs.
+    2. Axios: An HTTP client-based package used to communicate with REST APIs.
     
-    • React redux: Used for state management.
+    3. React redux: Used for state management.
     
-    • React bootstrap:  Component based library used for styling.
+    4. React bootstrap:  Component based library used for styling.
+    
+    5. Redux-toolkit – A simple, opinionated, powerful and effective library for state management.
 
 
 
 # Build
 
-    • To build the project, run the ‘npm build’ command.
+    1. To build the project, run the ‘npm build’ command.
     
-    • Enter the url generated after the build in your browser.
+    2. run 'npm start' to start the project.
+    
+    
 
 
+     
 
 
 
