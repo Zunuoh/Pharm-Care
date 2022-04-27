@@ -7,7 +7,7 @@ const Root = ({ children }) => {
   useLayoutEffect(() => {
     const checkLocalStorage = () => window.localStorage.getItem("persist:root");
     const store = JSON.parse(checkLocalStorage());
-    console.log("store", store);
+  
     if (store) {
       dispatch(getFromCache(store));
     } else {

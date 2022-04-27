@@ -44,7 +44,6 @@ export const drugSlice = createSlice({
 
     getFromCache: (state, action) => {
       state.value = JSON.parse(action.payload.value);
-      console.log("action", action);
     },
   },
 });
