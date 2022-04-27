@@ -41,6 +41,11 @@ export const drugSlice = createSlice({
     setActiveDrug: (state, action) => {
       state.activeDrug = action.payload;
     },
+
+    getFromCache: (state, action) => {
+      state.value = JSON.parse(action.payload.value);
+      console.log("action", action);
+    },
   },
 });
 
@@ -59,4 +64,5 @@ export const {
   updateDrug,
   setInitialState,
   setActiveDrug,
+  getFromCache,
 } = drugSlice.actions;

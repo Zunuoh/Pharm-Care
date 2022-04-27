@@ -82,7 +82,7 @@ const AddDrug = (props) => {
 
         <div className="footer">
           <button type="submit" className="acceptModalButton">
-            Add
+            Save
           </button>
           <button
             onClick={() => props.onClose?.()}

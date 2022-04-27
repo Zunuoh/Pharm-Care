@@ -72,7 +72,7 @@ const EditDrug = ({ id, ...props }) => {
 
         <div className="footer">
           <button type="submit" className="acceptModalButton">
-            Edit
+            Save
           </button>
           <button
             onClick={() => props.onClose?.()}
